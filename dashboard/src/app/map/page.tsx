@@ -12,9 +12,7 @@ const METRIC_OPTIONS: { key: MetricKey; label: string }[] = [
   { key: 'offensive_epa', label: 'Offensive EPA' },
   { key: 'defensive_epa', label: 'Defensive EPA' },
   { key: 'play_calling', label: 'Play-Calling Efficiency' },
-  { key: 'fourth_down', label: '4th Down Decisions' },
   { key: 'roster_cap', label: 'Roster Cap Efficiency' },
-  { key: 'defense', label: 'Defensive Execution' },
   { key: 'game_management', label: 'Game Management' },
 ];
 
@@ -137,7 +135,7 @@ export default function HomePage() {
                 onChange={(e) => setXAxis(e.target.value as MetricKey)}
                 className="bg-white/5 text-xs text-white/80 rounded-lg px-3 py-2 border border-white/10 outline-none cursor-pointer hover:border-white/20 transition-all font-medium"
               >
-                {METRIC_OPTIONS.map(opt => (
+                {METRIC_OPTIONS.filter(opt => opt.key !== yAxis).map(opt => (
                   <option key={opt.key} value={opt.key} className="bg-[#0f0f15] text-white">
                     {opt.label}
                   </option>
@@ -152,7 +150,7 @@ export default function HomePage() {
                 onChange={(e) => setYAxis(e.target.value as MetricKey)}
                 className="bg-white/5 text-xs text-white/80 rounded-lg px-3 py-2 border border-white/10 outline-none cursor-pointer hover:border-white/20 transition-all font-medium"
               >
-                {METRIC_OPTIONS.map(opt => (
+                {METRIC_OPTIONS.filter(opt => opt.key !== xAxis).map(opt => (
                   <option key={opt.key} value={opt.key} className="bg-[#0f0f15] text-white">
                     {opt.label}
                   </option>
